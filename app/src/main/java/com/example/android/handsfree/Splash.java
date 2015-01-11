@@ -4,7 +4,9 @@ package com.example.android.handsfree;
  * Created by priyanshu on 09-Jan-15.
  */
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -12,25 +14,44 @@ import android.view.Window;
 
 public class Splash extends Activity
 {
-    View mDecorView;
+    private View mDecorView;
+    public static final String MyPrefs = "MyPrefs";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        this.requestWindowFeature(Window.FEATURE_NO_TITLE); // Full Screen. No title bar
+        //this.requestWindowFeature(Window.FEATURE_NO_TITLE); // Full Screen. No title bar
         setContentView(R.layout.activity_splash);
+
+
         mDecorView=getWindow().getDecorView();
         hideSystemUI();
-        // Runs for 5 secs then goes to next activity
+        // Runs for 2 secs then goes to next activity
         Thread timer = new Thread(){
             public void run(){
                 try{
-                    sleep(5000);
+                    sleep(2000);
                 } catch(InterruptedException e){
                     e.printStackTrace();
                 } finally{
-                    Intent intent = new Intent(Splash.this, MainPage.class);
-                    startActivity(intent);
+
+                    SharedPreferences sp = getSharedPreferences(MyPrefs, Context.MODE_PRIVATE);
+                    if(!sp.getBoolean("First", false))
+                    {
+                        SharedPreferences.Editor editor = sp.edit();
+                        editor.putBoolean("First", true);
+                        editor.commit();
+                        Intent intent = new Intent(Splash.this, LaunchTutorial.class);
+                        startActivity(intent);
+                    }
+
+                    else
+                    {
+                        Intent intent = new Intent(Splash.this, MainPage.class);
+                        startActivity(intent);
+                    }
+
+
                 }
             }
         };

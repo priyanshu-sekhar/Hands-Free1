@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FEFCFF"
     tools:context=".Splash" >
 
     <!--
@@ -16,6 +15,7 @@
             style="?buttonBarStyle"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="#FFFFFF"
             tools:ignore="UselessParent" >
 
 		<TextView
@@ -23,25 +23,15 @@
 		    android:layout_width="wrap_content"
 		    android:layout_height="wrap_content"
             android:textColor="#33b5e5"
-        	android:textSize="50sp"
+        	android:textSize="40sp"
         	android:textStyle="bold"
-        	android:text="GO AHEAD"
+        	android:text="GO HANDSFREE!!!"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="203dp" />
 
-		<TextView
-		    android:id="@+id/textView2"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_below="@+id/textView1"
-		    android:layout_centerHorizontal="true"
-		    android:text="UNPLUG IT"
-		    android:textColor="#33b5e5"
-		    android:textSize="50sp"
-		    android:textStyle="bold" />
-            
-        </RelativeLayout>
+
+    </RelativeLayout>
   
 
 </FrameLayout>
