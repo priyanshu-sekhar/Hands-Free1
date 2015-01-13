@@ -1,0 +1,29 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff217eff"
+    tools:context=".navigate_blacklist" >
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_marginTop="50dp"
+        xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    </ListView>
+
+    <Button
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:id="@+id/add"
+        android:layout_gravity="left|top" />
+
+    <Button
+        android:layout_width="182dp"
+        android:layout_height="wrap_content"
+        android:text="Remove"
+        android:id="@+id/remove"
+        android:layout_gravity="right|top" />
+</FrameLayout>
