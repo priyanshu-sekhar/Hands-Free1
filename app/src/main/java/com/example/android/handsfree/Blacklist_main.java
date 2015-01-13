@@ -8,6 +8,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.AudioManager;
 import android.provider.ContactsContract;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.app.ListFragment;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
@@ -24,11 +25,13 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import java.util.Locale;
+
 /**
  * Created by priyanshu on 12-Jan-15.
  */
 
-public class Blacklist_main extends ListFragment implements View.OnClickListener {
+public class Blacklist_main extends ListFragment implements View.OnClickListener, TextToSpeech.OnInitListener {
     public ListView myListView;
     Cursor pointer;
     public String[] Contacts = {};
@@ -40,6 +43,7 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
     Button Add,Remove;
     DBHandler mHandler;
     ListAdapter adapter;
+    static TextToSpeech tts;
     private MusicIntentReceiver myHeadsetReceiver;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -57,6 +61,7 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        tts = new TextToSpeech(getActivity().getApplicationContext(), this);
         Add = (Button) getView().findViewById(R.id.add);
         Add.setOnClickListener(this);
         Remove=(Button)getView().findViewById(R.id.remove);
@@ -131,5 +136,29 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
         super.onAttach(activity);
     }
 
+    @Override
+    public void onInit(int status) {
+        if (status == TextToSpeech.SUCCESS) {
 
+            int result = tts.setLanguage(Locale.US);
+
+            if (result == TextToSpeech.LANG_MISSING_DATA
+                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
+                Log.i("TTS", "This Language is not supported");
+            }
+
+        } else {
+            Log.i("TTS", "Initilization Failed!");
+        }
+    }
+    public static void speakOut(String text){
+        text = text+" is calling to p s p lauda";
+        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+    }
+//    @Override
+//    public void onDestroyView() {
+//        super.onDestroyView();
+//        getActivity().moveTaskToBack(true);
+//        getActivity().finish();
+//    }
 }

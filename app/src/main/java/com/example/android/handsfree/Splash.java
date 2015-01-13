@@ -30,9 +30,7 @@ public class Splash extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        myHeadsetReceiver=new MusicIntentReceiver();
-        IntentFilter filter=new IntentFilter(Intent.ACTION_HEADSET_PLUG);
-        registerReceiver(myHeadsetReceiver,filter);
+
         mDecorView=getWindow().getDecorView();
         hideSystemUI();
         // Runs for 2 secs then goes to next activity
@@ -65,6 +63,9 @@ public class Splash extends Activity
             }
         };
         timer.start();
+        myHeadsetReceiver=new MusicIntentReceiver();
+        IntentFilter filter=new IntentFilter(Intent.ACTION_HEADSET_PLUG);
+        registerReceiver(myHeadsetReceiver,filter);
     }
     private void hideSystemUI(){
         mDecorView.setSystemUiVisibility(
@@ -81,13 +82,23 @@ public class Splash extends Activity
         IntentFilter filter=new IntentFilter(Intent.ACTION_HEADSET_PLUG);
         registerReceiver(myHeadsetReceiver,filter);
         super.onResume();
+
     }
 
     @Override
     public void onDestroy() {
         unregisterReceiver(myHeadsetReceiver);
-        super.onPause();
+        super.onDestroy();
+
     }
+
+//    @Override
+//    protected void onPause() {
+//        IntentFilter filter=new IntentFilter(Intent.ACTION_HEADSET_PLUG);
+//        registerReceiver(myHeadsetReceiver,filter);
+//        super.onPause();
+//        finish();
+//    }
 }
 
 
