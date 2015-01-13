@@ -2,7 +2,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FEFCFF"
     tools:context=".Splash" >
 
     <!--
@@ -11,38 +10,28 @@
          TextureView, etc.
     -->
 
-	<RelativeLayout
-            android:id="@+id/fullscreen_content_controls"
-            style="?buttonBarStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            tools:ignore="UselessParent" >
+    <RelativeLayout
+        android:id="@+id/fullscreen_content_controls"
+        style="?buttonBarStyle"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#FFFFFF"
+        tools:ignore="UselessParent" >
 
-		<TextView
-		    android:id="@+id/textView1"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:textColor="#33b5e5"
-        	android:textSize="50sp"
-        	android:textStyle="bold"
-        	android:text="GO AHEAD"
+            android:textSize="40sp"
+            android:textStyle="bold"
+            android:text="GO HANDSFREE!!!"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="203dp" />
 
-		<TextView
-		    android:id="@+id/textView2"
-		    android:layout_width="wrap_content"
-		    android:layout_height="wrap_content"
-		    android:layout_below="@+id/textView1"
-		    android:layout_centerHorizontal="true"
-		    android:text="UNPLUG IT"
-		    android:textColor="#33b5e5"
-		    android:textSize="50sp"
-		    android:textStyle="bold" />
-            
-        </RelativeLayout>
-  
 
-</FrameLayout>
-<!-- From: file:/D:/AndoidProjects/Android-ViewPagerIndicator-master/Hands%20Free/app/src/main/res/layout/activity_splash.xml -->
+    </RelativeLayout>
+
+
+</FrameLayout><!-- From: file:/F:/Github/Hands-Free1/app/src/main/res/layout/activity_splash.xml -->
