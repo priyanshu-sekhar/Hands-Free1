@@ -1,37 +1,52 @@
 package com.example.android.handsfree;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.TimePickerDialog;
+import android.content.ContentValues;
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.RadioButton;
 import android.widget.TimePicker;
 
 import java.util.Calendar;
+import android.support.v4.app.FragmentTransaction;
+import android.widget.Toast;
 
-public class MainPage extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks, View.OnClickListener
-{
+import java.lang.Object.*;
+//import com.google.android.gcm.server.Constants;
+public class MainPage extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks, View.OnClickListener {
     private int setHour, getHour;
     private int setMinute, getMinute;
-    private Button bUnplug;
+    private static Button bUnplug;
 
-    /** This integer will uniquely define the dialog to be used for displaying time picker.*/
+    /**
+     * This integer will uniquely define the dialog to be used for displaying time picker.
+     */
     static final int TIME_DIALOG_ID = 0;
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
+    private ListView mDrawerList;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
 
@@ -51,6 +66,7 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
         mNavigationDrawerFragment.setUp(
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
+        //mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
         final Calendar calendar = Calendar.getInstance();
         getHour = calendar.get(Calendar.HOUR_OF_DAY);
         getMinute = calendar.get(Calendar.MINUTE);
@@ -64,10 +80,11 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
 //        return true;
 //    }
 
-    /** To do when button is clicked */
+    /**
+     * To do when button is clicked
+     */
     @Override
-    public void onClick(View v)
-    {
+    public void onClick(View v) {
         // TODO Auto-generated method stub
         //showDialog(TIME_DIALOG_ID);
         //com.example.android.effectivenavigation.datetimepicker.time.TimePickerDialog dialog = newInstance((OnTimeSetListener) mTimeSetListener, getHour, getMinute, true);
@@ -87,9 +104,10 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
 //		return null;
 //	}
 
-    /** Callback received when the user "picks" a time in the dialog */
-    private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener()
-    {
+    /**
+     * Callback received when the user "picks" a time in the dialog
+     */
+    private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
 
         @Override
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
@@ -102,10 +120,40 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         FragmentManager fragmentManager = getSupportFragmentManager();
-        fragmentManager.beginTransaction()
-                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
-                .commit();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        Fragment selectedFrag = null;
+//        fragmentManager.beginTransaction()
+//                .replace(R.id.container, PlaceholderFragment.newInstance(position + 1))
+//                .commit();
+        switch (position + 1) {
+            case 1:
+//                Intent intent = new Intent(this,TestContacts.class);
+//                startActivity(intent);
+                selectedFrag = new Blacklist_main();
+//                        ft.replace(R.id.container,PlaceholderFragment.newInstance(1),Constants.TAG_FRAGMENT)
+//                        .commit();
+//                Intent intent = new Intent(this,Blacklist.class);
+//                startActivity(intent);
+                break;
+            case 2:
+                selectedFrag = new Whitelist();
+//                fragmentManager.beginTransaction()
+//                        .replace(R.id.container,PlaceholderFragment.newInstance(2))
+//                        .commit();
+                break;
+            case 3:
+                selectedFrag = new PureSilence();
+//                fragmentManager.beginTransaction()
+//                        .replace(R.id.container,PlaceholderFragment.newInstance(3))
+//                        .commit();
+            default:
+                break;
+        }
+        if (selectedFrag != null)
+            ft.replace(R.id.container, selectedFrag).commit();
+
     }
+
     public void onSectionAttached(int number) {
         switch (number) {
             case 1:
@@ -119,6 +167,7 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
                 break;
         }
     }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
@@ -131,26 +180,78 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
         }
         return super.onCreateOptionsMenu(menu);
     }
+
     public void restoreActionBar() {
         ActionBar actionBar = getSupportActionBar();
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
     }
+
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
+        DBHandler mHandler = new DBHandler(getApplicationContext());
+        SQLiteDatabase db = mHandler.getWritableDatabase();
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        switch (item.getItemId()) {
+            case R.id.action_settings:
+                Log.i("settings", new String("settngs"));
+                Toast.makeText(getApplicationContext(), "run", Toast.LENGTH_LONG).show();
 
-        return super.onOptionsItemSelected(item);
+                break;
+
+
+            case R.id.action_sync:
+
+                Cursor mCursor = getContacts();
+                startManagingCursor(mCursor);
+                mCursor.moveToFirst();
+                do {
+                    String name = mCursor.getString(mCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
+                    String number = mCursor.getString(mCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                    mHandler.SaveTable(DBReader.DBEntry.TABLE_NAME,name,number);
+                } while (mCursor.moveToNext());
+                break;
+            case R.id.action_blacklist:
+                mHandler.deleteAll(DBReader.DBEntry.BLACKLIST_TABLE);
+                break;
+            case R.id.action_synceddata:
+                mHandler.deleteAll(DBReader.DBEntry.TABLE_NAME);
+                break;
+        }
+        db.close();
+        return false;
     }
+
+    private Cursor getContacts() {
+        // Run query
+        String ContactNumber, ContactName, ContactID;
+        ContactNumber = ContactsContract.CommonDataKinds.Phone.NUMBER;
+        Log.v("number:", ContactNumber);
+        ContactName = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME;
+        Log.v("names:", ContactName);
+        ContactID = ContactsContract.CommonDataKinds.Phone._ID;
+        String[] projection;
+        projection = new String[]{ContactID,
+                ContactName,
+                ContactNumber
+        };
+
+        String selection = ContactsContract.CommonDataKinds.Phone.HAS_PHONE_NUMBER + " = '1'";
+
+        String[] selectionArgs = null;
+        String sortOrder = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME
+                + " COLLATE LOCALIZED ASC";
+        Uri uri = ContactsContract.CommonDataKinds.Phone.CONTENT_URI;
+        return managedQuery(uri, projection, selection, selectionArgs,
+                sortOrder);
+    }
+
+
     public static class PlaceholderFragment extends Fragment {
         /**
          * The fragment argument representing the section number for this
@@ -187,5 +288,105 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
+    @SuppressLint("ValidFragment")
+    public  class BlacklistFragment extends Fragment {
+        private static final String ARG_SECTION_NUMBER = "section_number";
+        //protected RadioButton test=(RadioButton)findViewById(R.id.radioButton);
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public  BlacklistFragment newInstance(int sectionNumber) {
+            BlacklistFragment blackFrag = new BlacklistFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            blackFrag.setArguments(args);
+            return blackFrag;
+        }
+
+        public BlacklistFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            super.onCreateView(inflater,container,savedInstanceState);
+            View rootView = inflater.inflate(R.layout.navigate_blacklist, container, false);
+
+            return rootView;
+        }
+
+        @Override
+        public void onAttach(Activity activity) {
+            super.onAttach(activity);
+//            ((MainPage) activity).onSectionAttached(
+//                    getArguments().getInt(ARG_SECTION_NUMBER));
+        }
+    }
+    public static class WhitelistFragment extends Fragment {
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static WhitelistFragment newInstance(int sectionNumber) {
+            WhitelistFragment whiteFrag = new WhitelistFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            whiteFrag.setArguments(args);
+            return whiteFrag;
+        }
+
+        public WhitelistFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.navigation_whitelist, container, false);
+            return rootView;
+        }
+
+        @Override
+        public void onAttach(Activity activity) {
+            super.onAttach(activity);
+            ((MainPage) activity).onSectionAttached(
+                    getArguments().getInt(ARG_SECTION_NUMBER));
+        }
+    }
+    public static class PureSilenceFragment extends Fragment {
+        private static final String ARG_SECTION_NUMBER = "section_number";
+
+        /**
+         * Returns a new instance of this fragment for the given section
+         * number.
+         */
+        public static PureSilenceFragment newInstance(int sectionNumber) {
+            PureSilenceFragment pureFrag = new PureSilenceFragment();
+            Bundle args = new Bundle();
+            args.putInt(ARG_SECTION_NUMBER, sectionNumber);
+            pureFrag.setArguments(args);
+            return pureFrag;
+        }
+
+        public PureSilenceFragment() {
+        }
+
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                                 Bundle savedInstanceState) {
+            View rootView = inflater.inflate(R.layout.navigate_pure_silence, container, false);
+            return rootView;
+        }
+
+        @Override
+        public void onAttach(Activity activity) {
+            super.onAttach(activity);
+            ((MainPage) activity).onSectionAttached(
+                    getArguments().getInt(ARG_SECTION_NUMBER));
+        }
+    }
+
 }
 
