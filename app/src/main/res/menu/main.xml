@@ -10,5 +10,11 @@
         app:showAsAction="withText|ifRoom" />
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_sync" android:title="@string/action_sync"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_blacklist" android:title="@string/action_blacklist"
+        android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_synceddata" android:title="@string/action_synceddata"
+        android:orderInCategory="100" app:showAsAction="never" />
 
 </menu>
