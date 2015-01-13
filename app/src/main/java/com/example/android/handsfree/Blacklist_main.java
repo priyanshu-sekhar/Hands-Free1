@@ -2,6 +2,8 @@ package com.example.android.handsfree;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.AudioManager;
@@ -38,10 +40,18 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
     Button Add,Remove;
     DBHandler mHandler;
     ListAdapter adapter;
+    private MusicIntentReceiver myHeadsetReceiver;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.navigate_blacklist, container, false);
         return rootView;
+    }
+
+    @Override
+    public void onResume() {
+        //IntentFilter filter=new IntentFilter(Intent.ACTION_HEADSET_PLUG);
+        //getActivity().getApplicationContext().registerReceiver(myHeadsetReceiver,filter);
+        super.onResume();
     }
 
     @Override
@@ -51,10 +61,11 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
         Add.setOnClickListener(this);
         Remove=(Button)getView().findViewById(R.id.remove);
         Remove.setOnClickListener(this);
+
         mHandler = new DBHandler(getActivity().getApplicationContext());
         pointer = mHandler.getTablePointer(DBReader.DBEntry.BLACKLIST_TABLE);
-        AudioManager audio =(AudioManager)getActivity().getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-        audio.setRingerMode(0);
+//        AudioManager audio =(AudioManager)getActivity().getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+//        audio.setRingerMode(0);
 //        if(pointer.getInt(0)>0){
         pointer.moveToFirst();
         //Log.i("values", pointer.getString(1));
