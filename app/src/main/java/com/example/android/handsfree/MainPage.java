@@ -44,7 +44,7 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
     private ListView mDrawerList;
-
+    FragmentManager myContext;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -218,6 +218,10 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
                 break;
             case R.id.action_blacklist:
                 mHandler.deleteAll(DBReader.DBEntry.BLACKLIST_TABLE);
+
+                FragmentManager fragmentManager = getSupportFragmentManager();
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.container, new Blacklist_main()).addToBackStack(null).commit();
                 break;
             case R.id.action_synceddata:
                 mHandler.deleteAll(DBReader.DBEntry.TABLE_NAME);
