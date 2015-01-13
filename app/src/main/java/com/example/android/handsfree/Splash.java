@@ -18,9 +18,7 @@ public class Splash extends Activity
     public static final String MyPrefs = "MyPrefs";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
-        //this.requestWindowFeature(Window.FEATURE_NO_TITLE); // Full Screen. No title bar
         setContentView(R.layout.activity_splash);
 
 
