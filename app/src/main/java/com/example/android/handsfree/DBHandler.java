@@ -12,7 +12,7 @@ import com.example.android.handsfree.DBReader;
 
 
 public class DBHandler extends SQLiteOpenHelper{
-    private static final String DATABASE_NAME="Contact3.db";
+    private static final String DATABASE_NAME="Contact5.db";
     private static final int DATABASE_VERSION=1;
     DBHandler mHandler;
     Cursor pointer;

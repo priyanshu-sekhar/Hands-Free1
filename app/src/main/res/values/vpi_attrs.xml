@@ -35,6 +35,7 @@
     <attr name="selectedColor" format="color" />
     <attr name="strokeWidth" format="dimension" />
     <attr name="unselectedColor" format="color" />
+    <attr name="fontPath" format="string"/>
 
     <declare-styleable name="CirclePageIndicator">
         <!-- Whether or not the indicators should be centered. -->
@@ -125,5 +126,11 @@
         <attr name="selectedColor" />
         <!-- View background -->
         <attr name="android:background"/>
+    </declare-styleable>
+    <attr name="materialFontPath" format="string"/>
+
+    <declare-styleable name="MaterialNavigationDrawer">
+        <attr name="rippleBackport" format="boolean" />
+        <attr name="drawerType" format="integer" />
     </declare-styleable>
 </resources>

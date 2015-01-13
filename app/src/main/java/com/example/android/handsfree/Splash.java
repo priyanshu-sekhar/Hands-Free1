@@ -6,8 +6,10 @@ package com.example.android.handsfree;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 
@@ -16,11 +18,12 @@ public class Splash extends Activity
 {
     private View mDecorView;
     public static final String MyPrefs = "MyPrefs";
+    private MusicIntentReceiver myHeadsetReceiver;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-
+        myHeadsetReceiver=new MusicIntentReceiver();
 
         mDecorView=getWindow().getDecorView();
         hideSystemUI();
@@ -69,6 +72,9 @@ public class Splash extends Activity
         // TODO Auto-generated method stub
         super.onPause();
         finish();
+    }
+    protected void onResume(){
+        IntentFilter filter=new IntentFilter(Intent.ACTION_HEADSET_PLUG)
     }
 
 

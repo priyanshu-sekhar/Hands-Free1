@@ -225,6 +225,9 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
                 break;
             case R.id.action_synceddata:
                 mHandler.deleteAll(DBReader.DBEntry.TABLE_NAME);
+                FragmentManager fragmentManager1 = getSupportFragmentManager();
+                FragmentTransaction ft1 = fragmentManager1.beginTransaction();
+                ft1.replace(R.id.container, new Blacklist_main()).addToBackStack(null).commit();
                 break;
         }
         db.close();
