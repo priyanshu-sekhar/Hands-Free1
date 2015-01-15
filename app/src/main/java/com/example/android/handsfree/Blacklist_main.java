@@ -91,7 +91,7 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
         //Log.i("values", pointer.getString(1));
         adapter = new SimpleCursorAdapter(
                 getActivity(),
-                android.R.layout.simple_list_item_multiple_choice,
+                R.layout.custom_textview,
                 pointer,
                 Contacts = new String[]{DBReader.DBEntry.COLUMN_NAME,
                         DBReader.DBEntry.COLUMN_PHONE
