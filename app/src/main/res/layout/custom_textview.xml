@@ -6,7 +6,8 @@
     android:layout_height="wrap_content"
 
     android:layout_marginTop="6dip"
-    android:textColor="#666362"
+    android:textColor="#504A4B"
+    android:fontFamily="sans-serif-condensed"
     android:background="?android:attr/activatedBackgroundIndicator"
     android:paddingBottom="10dp"
     android:paddingTop="10dp"
