@@ -23,12 +23,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="#33b5e5"
-            android:textSize="40sp"
+            android:textSize="50sp"
             android:textStyle="bold"
-            android:text="GO HANDSFREE!!!"
+            android:text="GO"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="203dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HANDSFREE!!!"
+            android:textColor="#33b5e5"
+            android:textSize="50sp"
+            android:textStyle="bold"
+            android:id="@+id/textView3"
+            android:layout_below="@+id/textView1"
+            android:layout_centerHorizontal="true" />
 
 
     </RelativeLayout>
