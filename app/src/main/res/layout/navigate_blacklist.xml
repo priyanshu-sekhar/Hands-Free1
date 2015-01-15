@@ -2,7 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#ff090509"
+    android:background="#E5E4E2"
     tools:context=".navigate_blacklist" >
 
     <RelativeLayout
@@ -26,7 +26,7 @@
             android:layout_width="70dp"
             android:layout_height="70dp"
             android:id="@+id/remove"
-            android:background="@drawable/trash"
+            android:background="@drawable/ic_action_discard"
             android:layout_marginRight="52dp"
             android:layout_marginEnd="52dp"
             android:layout_alignParentTop="true"
@@ -42,7 +42,7 @@
             android:layout_alignParentStart="true"
             android:layout_marginLeft="40dp"
             android:layout_marginStart="40dp"
-            android:background="@drawable/add"/>
+            android:background="@drawable/ic_action_add_group"/>
 
 
     </RelativeLayout>
