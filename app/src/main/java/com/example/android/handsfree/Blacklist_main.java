@@ -164,7 +164,7 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
             }
 
         } else {
-            Log.i("TTS", "Initilization Failed!");
+            Log.i("TTS", "Initialization Failed!");
         }
     }
 
