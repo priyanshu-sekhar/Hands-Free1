@@ -12,10 +12,17 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Window;
+//import android.os.SystemProperties;
 
 
 public class Splash extends Activity
-{
+{   /*Changes for Headset-Plugin listener*/
+    private static final String LOG_TAG = Splash.class.getSimpleName();
+//    private static final boolean DBG =
+//            (PhoneGlobals.DBG_LEVEL >= 1) && (SystemProperties.getInt("ro.debuggable", 0) == 1);
+//    private static final boolean VDBG = (PhoneGlobals.DBG_LEVEL >= 2);
+
+    /*Changes for Headset-Plugin listener*/
     private View mDecorView;
     public static final String MyPrefs = "MyPrefs";
     private MusicIntentReceiver myHeadsetReceiver;
@@ -23,7 +30,6 @@ public class Splash extends Activity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        myHeadsetReceiver=new MusicIntentReceiver();
 
         mDecorView=getWindow().getDecorView();
         hideSystemUI();
@@ -57,6 +63,9 @@ public class Splash extends Activity
             }
         };
         timer.start();
+        myHeadsetReceiver=new MusicIntentReceiver();
+        IntentFilter filter=new IntentFilter(Intent.ACTION_HEADSET_PLUG);
+        registerReceiver(myHeadsetReceiver,filter);
     }
     private void hideSystemUI(){
         mDecorView.setSystemUiVisibility(
@@ -68,14 +77,29 @@ public class Splash extends Activity
                         |View.SYSTEM_UI_FLAG_LOW_PROFILE
                         |View.SYSTEM_UI_FLAG_IMMERSIVE);
     }
-    protected void onPause() {
-        // TODO Auto-generated method stub
-        super.onPause();
-        finish();
-    }
+
     protected void onResume(){
-        IntentFilter filter=new IntentFilter(Intent.ACTION_HEADSET_PLUG)
+        IntentFilter filter=new IntentFilter(Intent.ACTION_HEADSET_PLUG);
+        registerReceiver(myHeadsetReceiver,filter);
+        super.onResume();
+
     }
 
+    @Override
+    public void onDestroy() {
+        unregisterReceiver(myHeadsetReceiver);
+        super.onDestroy();
 
+    }
+
+//    @Override
+//    protected void onPause() {
+//        IntentFilter filter=new IntentFilter(Intent.ACTION_HEADSET_PLUG);
+//        registerReceiver(myHeadsetReceiver,filter);
+//        super.onPause();
+//        finish();
+//    }
 }
+
+
+
