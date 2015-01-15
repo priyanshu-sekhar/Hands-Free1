@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.speech.RecognizerIntent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.widget.DrawerLayout;
@@ -26,6 +27,7 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TimePicker;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
@@ -33,18 +35,15 @@ import android.widget.Toast;
 import java.lang.Object.*;
 //import com.google.android.gcm.server.Constants;
 public class MainPage extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks, View.OnClickListener {
-    private int setHour, getHour;
-    private int setMinute, getMinute;
-    private static Button bUnplug;
 
-    /**
-     * This integer will uniquely define the dialog to be used for displaying time picker.
-     */
-    static final int TIME_DIALOG_ID = 0;
+    private static Button bUnplug;
+    private static final int VOICE_RECOGNITION_REQUEST_CODE = 1234;
+
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
     private ListView mDrawerList;
     FragmentManager myContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,9 +66,6 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
                 R.id.navigation_drawer,
                 (DrawerLayout) findViewById(R.id.drawer_layout));
         //mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
-        final Calendar calendar = Calendar.getInstance();
-        getHour = calendar.get(Calendar.HOUR_OF_DAY);
-        getMinute = calendar.get(Calendar.MINUTE);
 
     }
 
@@ -90,7 +86,9 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
         //com.example.android.effectivenavigation.datetimepicker.time.TimePickerDialog dialog = newInstance((OnTimeSetListener) mTimeSetListener, getHour, getMinute, true);
     }
 
-    /** Create a new dialog for time picker */
+    /**
+     * Create a new dialog for time picker
+     */
 //	@Override
 //	@Deprecated
 //	protected Dialog onCreateDialog(int id)
@@ -103,20 +101,6 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
 //		}
 //		return null;
 //	}
-
-    /**
-     * Callback received when the user "picks" a time in the dialog
-     */
-    private TimePickerDialog.OnTimeSetListener mTimeSetListener = new TimePickerDialog.OnTimeSetListener() {
-
-        @Override
-        public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-            setHour = hourOfDay;
-            setMinute = minute;
-        }
-    };
-
-
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -213,7 +197,7 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
                 do {
                     String name = mCursor.getString(mCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
                     String number = mCursor.getString(mCursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
-                    mHandler.SaveTable(DBReader.DBEntry.TABLE_NAME,name,number);
+                    mHandler.SaveTable(DBReader.DBEntry.TABLE_NAME, name, number);
                 } while (mCursor.moveToNext());
                 break;
             case R.id.action_blacklist:
@@ -295,15 +279,17 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
+
     @SuppressLint("ValidFragment")
-    public  class BlacklistFragment extends Fragment {
+    public class BlacklistFragment extends Fragment {
         private static final String ARG_SECTION_NUMBER = "section_number";
         //protected RadioButton test=(RadioButton)findViewById(R.id.radioButton);
+
         /**
          * Returns a new instance of this fragment for the given section
          * number.
          */
-        public  BlacklistFragment newInstance(int sectionNumber) {
+        public BlacklistFragment newInstance(int sectionNumber) {
             BlacklistFragment blackFrag = new BlacklistFragment();
             Bundle args = new Bundle();
             args.putInt(ARG_SECTION_NUMBER, sectionNumber);
@@ -317,7 +303,7 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            super.onCreateView(inflater,container,savedInstanceState);
+            super.onCreateView(inflater, container, savedInstanceState);
             View rootView = inflater.inflate(R.layout.navigate_blacklist, container, false);
 
             return rootView;
@@ -330,6 +316,7 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
 //                    getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
+
     public static class WhitelistFragment extends Fragment {
         private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -362,6 +349,7 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
+
     public static class PureSilenceFragment extends Fragment {
         private static final String ARG_SECTION_NUMBER = "section_number";
 
@@ -394,6 +382,7 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
                     getArguments().getInt(ARG_SECTION_NUMBER));
         }
     }
+
 
 }
 

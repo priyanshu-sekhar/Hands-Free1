@@ -4,10 +4,13 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.media.AudioManager;
 import android.provider.ContactsContract;
+import android.speech.RecognizerIntent;
 import android.speech.tts.TextToSpeech;
 import android.support.v4.app.ListFragment;
 import android.os.Bundle;
@@ -25,7 +28,11 @@ import android.widget.Button;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+
+import static java.lang.Thread.sleep;
 
 /**
  * Created by priyanshu on 12-Jan-15.
@@ -35,19 +42,24 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
     public ListView myListView;
     Cursor pointer;
     public String[] Contacts = {};
-    View rootView;
+    static View rootView;
     public ListView blackListView;
     public String[] blackListContacts = {};
     private FragmentActivity myContext;
     public int[] to = {};
-    Button Add,Remove;
+    Button Add, Remove;
     DBHandler mHandler;
     ListAdapter adapter;
     static TextToSpeech tts;
+    PackageManager pm;
+    static List<ResolveInfo> activities;
     private MusicIntentReceiver myHeadsetReceiver;
+    static FragmentActivity activity = null;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         rootView = inflater.inflate(R.layout.navigate_blacklist, container, false);
+
         return rootView;
     }
 
@@ -62,9 +74,13 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         tts = new TextToSpeech(getActivity().getApplicationContext(), this);
+        pm = getActivity().getPackageManager();
+        activities = pm.queryIntentActivities(
+                new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0);
+
         Add = (Button) getView().findViewById(R.id.add);
         Add.setOnClickListener(this);
-        Remove=(Button)getView().findViewById(R.id.remove);
+        Remove = (Button) getView().findViewById(R.id.remove);
         Remove.setOnClickListener(this);
 
         mHandler = new DBHandler(getActivity().getApplicationContext());
@@ -74,7 +90,7 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
 //        if(pointer.getInt(0)>0){
         pointer.moveToFirst();
         //Log.i("values", pointer.getString(1));
-         adapter = new SimpleCursorAdapter(
+        adapter = new SimpleCursorAdapter(
                 getActivity(),
                 android.R.layout.simple_list_item_multiple_choice,
                 pointer,
@@ -100,7 +116,7 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
                 ft.replace(R.id.container, new Blacklist()).addToBackStack(null).commit();
                 break;
             case R.id.remove:
-               // mHandler=new DBHandler(getActivity().getApplicationContext());
+                // mHandler=new DBHandler(getActivity().getApplicationContext());
                 SQLiteDatabase db = mHandler.getWritableDatabase();
                 SparseBooleanArray checkedPositions = myListView
                         .getCheckedItemPositions();
@@ -130,9 +146,10 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
                 break;
         }
     }
+
     @Override
     public void onAttach(Activity activity) {
-        myContext=(FragmentActivity)activity;
+        myContext = (FragmentActivity) activity;
         super.onAttach(activity);
     }
 
@@ -151,14 +168,17 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
             Log.i("TTS", "Initilization Failed!");
         }
     }
-    public static void speakOut(String text){
-        text = text+" is calling to p s p lauda";
+
+    public static FragmentActivity speakOut(String text) {
+        text = text + " is calling you. Say yes to Receive or No to Reject ";
+        //text = "call";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
+        try{
+            sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        activity = (FragmentActivity) rootView.getContext();
+        return activity;
     }
-//    @Override
-//    public void onDestroyView() {
-//        super.onDestroyView();
-//        getActivity().moveTaskToBack(true);
-//        getActivity().finish();
-//    }
 }
