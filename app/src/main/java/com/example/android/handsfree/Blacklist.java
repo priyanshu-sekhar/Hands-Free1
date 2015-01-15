@@ -79,7 +79,7 @@ public class Blacklist extends ListFragment implements View.OnClickListener {
 
         ListAdapter adapter = new SimpleCursorAdapter(
                 getActivity(),
-                android.R.layout.simple_list_item_multiple_choice,
+                android.R.layout.simple_list_item_activated_2,
                 pointer,
                 Contacts = new String[] {DBReader.DBEntry.COLUMN_NAME,
                         DBReader.DBEntry.COLUMN_PHONE
