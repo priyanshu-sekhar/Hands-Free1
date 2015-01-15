@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 
@@ -43,17 +44,14 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
     Cursor pointer;
     public String[] Contacts = {};
     static View rootView;
-    public ListView blackListView;
-    public String[] blackListContacts = {};
     private FragmentActivity myContext;
     public int[] to = {};
-    Button Add, Remove;
+    private ImageButton add, remove;
     DBHandler mHandler;
     ListAdapter adapter;
     static TextToSpeech tts;
     PackageManager pm;
     static List<ResolveInfo> activities;
-    private MusicIntentReceiver myHeadsetReceiver;
     static FragmentActivity activity = null;
 
     @Override
@@ -65,8 +63,6 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
 
     @Override
     public void onResume() {
-        //IntentFilter filter=new IntentFilter(Intent.ACTION_HEADSET_PLUG);
-        //getActivity().getApplicationContext().registerReceiver(myHeadsetReceiver,filter);
         super.onResume();
     }
 
@@ -78,10 +74,13 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
         activities = pm.queryIntentActivities(
                 new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0);
 
-        Add = (Button) getView().findViewById(R.id.add);
-        Add.setOnClickListener(this);
-        Remove = (Button) getView().findViewById(R.id.remove);
-        Remove.setOnClickListener(this);
+        // add reference to views
+        add = (ImageButton) getView().findViewById(R.id.add);
+        remove = (ImageButton) getView().findViewById(R.id.remove);
+
+        // set listeners to image buttons
+        add.setOnClickListener(this);
+        remove.setOnClickListener(this);
 
         mHandler = new DBHandler(getActivity().getApplicationContext());
         pointer = mHandler.getTablePointer(DBReader.DBEntry.BLACKLIST_TABLE);
@@ -110,13 +109,13 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.add:
+            case R.id.add: // the add button
                 FragmentManager fragmentManager = myContext.getSupportFragmentManager();
                 FragmentTransaction ft = fragmentManager.beginTransaction();
                 ft.replace(R.id.container, new Blacklist()).addToBackStack(null).commit();
                 break;
-            case R.id.remove:
-                // mHandler=new DBHandler(getActivity().getApplicationContext());
+
+            case R.id.remove: // the remove button
                 SQLiteDatabase db = mHandler.getWritableDatabase();
                 SparseBooleanArray checkedPositions = myListView
                         .getCheckedItemPositions();
@@ -169,7 +168,7 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
         }
     }
 
-    public static FragmentActivity speakOut(String text) {
+    public static void speakOut(String text) {
         text = text + " is calling you. Say yes to Receive or No to Reject ";
         //text = "call";
         tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
@@ -179,6 +178,5 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
             e.printStackTrace();
         }
         activity = (FragmentActivity) rootView.getContext();
-        return activity;
     }
 }
