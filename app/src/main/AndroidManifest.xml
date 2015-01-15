@@ -38,14 +38,16 @@
         android:maxSdkVersion="18" />
 
     <application
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/icon_144"
         android:label="Hands Free"
         android:theme="@style/Theme.AppCompat" >
+
         <activity
             android:name=".LaunchTutorial"
             android:label="Hands Free"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
         </activity>
+
         <activity
             android:name=".Splash"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -66,7 +68,7 @@
 
         <activity
             android:name=".MainPage"
-            android:label="@string/title_activity_main" >
+            android:label="@string/title_activity_main">
         </activity>
         <activity
             android:name=".SpeechListener"
