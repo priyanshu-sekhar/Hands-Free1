@@ -154,8 +154,6 @@ public class Blacklist extends ListFragment implements View.OnClickListener {
 
                 }
 
-
-
                 getActivity().getSupportFragmentManager().popBackStackImmediate();
                 break;
         }
