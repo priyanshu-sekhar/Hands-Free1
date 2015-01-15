@@ -7,6 +7,8 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -49,11 +51,12 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_page);
 
-        /** Capture View elements */
 
+        /** Capture View elements */
+        bUnplug = (Button) findViewById(R.id.button1);
 
         /** Listener for click event of the button */
-        bUnplug = (Button) findViewById(R.id.button1);
+
         bUnplug.setOnClickListener(this);
 
         /** Get the current time of system */
@@ -170,6 +173,7 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
         actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
         actionBar.setDisplayShowTitleEnabled(true);
         actionBar.setTitle(mTitle);
+        actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#848482")));
     }
 
     @Override
