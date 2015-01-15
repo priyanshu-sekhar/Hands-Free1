@@ -16,7 +16,7 @@
 -->
 <resources>
 
-    <string name="app_name">Effective Navigation</string>
+    <string name="app_name">Hands Free</string>
     <string name="dummy_section_text">Section %1d is just a dummy section.</string>
     <string name="demo_external_activity">Demo External Activity</string>
     <string name="getting_started">Get Hands Free</string>
