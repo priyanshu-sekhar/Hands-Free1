@@ -56,11 +56,11 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
 
 
         /** Capture View elements */
-        bUnplug = (Button) findViewById(R.id.button1);
+
 
         /** Listener for click event of the button */
 
-        bUnplug.setOnClickListener(this);
+
 
         /** Get the current time of system */
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -126,16 +126,16 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
 //                startActivity(intent);
                 break;
             case 2:
-                selectedFrag = new Whitelist();
+                selectedFrag = new Whitelist_main();
 //                fragmentManager.beginTransaction()
 //                        .replace(R.id.container,PlaceholderFragment.newInstance(2))
 //                        .commit();
                 break;
-            case 3:
-                selectedFrag = new PureSilence();
-//                fragmentManager.beginTransaction()
-//                        .replace(R.id.container,PlaceholderFragment.newInstance(3))
-//                        .commit();
+//            case 3:
+//                selectedFrag = new PureSilence();
+////                fragmentManager.beginTransaction()
+////                        .replace(R.id.container,PlaceholderFragment.newInstance(3))
+////                        .commit();
             default:
                 break;
         }
@@ -152,9 +152,9 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
             case 2:
                 mTitle = getString(R.string.title_section2);
                 break;
-            case 3:
-                mTitle = getString(R.string.title_section3);
-                break;
+//            case 3:
+//                mTitle = getString(R.string.title_section3);
+//                break;
         }
     }
 

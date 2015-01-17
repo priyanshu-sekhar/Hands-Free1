@@ -39,7 +39,7 @@ import static java.lang.Thread.sleep;
  * Created by priyanshu on 12-Jan-15.
  */
 
-public class Blacklist_main extends ListFragment implements View.OnClickListener, TextToSpeech.OnInitListener {
+public class Blacklist_main extends ListFragment implements View.OnClickListener {
     public ListView myListView;
     Cursor pointer;
     public String[] Contacts = {};
@@ -49,7 +49,6 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
     private ImageButton add, remove;
     DBHandler mHandler;
     ListAdapter adapter;
-    static TextToSpeech tts;
     PackageManager pm;
     static List<ResolveInfo> activities;
     static FragmentActivity activity = null;
@@ -69,7 +68,6 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        tts = new TextToSpeech(getActivity().getApplicationContext(), this);
         pm = getActivity().getPackageManager();
         activities = pm.queryIntentActivities(
                 new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH), 0);
@@ -84,11 +82,8 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
 
         mHandler = new DBHandler(getActivity().getApplicationContext());
         pointer = mHandler.getTablePointer(DBReader.DBEntry.BLACKLIST_TABLE);
-//        AudioManager audio =(AudioManager)getActivity().getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
-//        audio.setRingerMode(0);
-//        if(pointer.getInt(0)>0){
+
         pointer.moveToFirst();
-        //Log.i("values", pointer.getString(1));
         adapter = new SimpleCursorAdapter(
                 getActivity(),
                 R.layout.custom_textview,
@@ -152,31 +147,8 @@ public class Blacklist_main extends ListFragment implements View.OnClickListener
         super.onAttach(activity);
     }
 
-    @Override
-    public void onInit(int status) {
-        if (status == TextToSpeech.SUCCESS) {
 
-            int result = tts.setLanguage(Locale.US);
 
-            if (result == TextToSpeech.LANG_MISSING_DATA
-                    || result == TextToSpeech.LANG_NOT_SUPPORTED) {
-                Log.i("TTS", "This Language is not supported");
-            }
 
-        } else {
-            Log.i("TTS", "Initialization Failed!");
-        }
-    }
 
-    public static void speakOut(String text) {
-        text = text + " is calling you. Say yes to Receive or No to Reject ";
-        //text = "call";
-        tts.speak(text, TextToSpeech.QUEUE_FLUSH, null);
-        try{
-            sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        activity = (FragmentActivity) rootView.getContext();
-    }
 }

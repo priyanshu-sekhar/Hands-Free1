@@ -16,5 +16,8 @@
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_synceddata" android:title="@string/action_synceddata"
         android:orderInCategory="100" app:showAsAction="never" />
+    <item android:id="@+id/action_switch" android:title="@string/action_switch"
+        android:orderInCategory="100" app:showAsAction="always"
+        android:actionLayout="@layout/actionbar_switch"/>
 
 </menu>

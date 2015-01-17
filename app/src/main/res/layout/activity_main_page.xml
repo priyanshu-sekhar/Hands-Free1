@@ -14,30 +14,12 @@
     <FrameLayout android:id="@+id/container" android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="UNPLUG"
-            android:layout_gravity="center" />
-
-        <ToggleButton
+        <Switch
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="New ToggleButton"
-            android:id="@+id/toggleButton"
+            android:text="New Switch"
+            android:id="@+id/switch1"
             android:layout_gravity="right|top" />
-
-        <TextView
-            android:layout_width="320dp"
-            android:layout_height="52dp"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="Start/Stop Hands Free"
-            android:id="@+id/textView"
-            android:layout_gravity="top" />
-
     </FrameLayout>
     <fragment android:id="@+id/navigation_drawer"
         android:layout_width="240dp" android:layout_height="match_parent"

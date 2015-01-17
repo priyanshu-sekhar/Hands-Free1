@@ -34,5 +34,6 @@
     <string name="contactsList">Contacts</string>
     <string name="title_call_action">Call Action</string>
     <string name="hello_world">Hello world!</string>
+    <string name="action_switch">On/Off</string>
 
 </resources>

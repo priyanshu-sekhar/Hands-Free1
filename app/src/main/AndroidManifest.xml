@@ -44,7 +44,7 @@
 
         <activity
             android:name=".LaunchTutorial"
-            android:label="Hands Free"
+            android:label="Launch Tutorial"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
         </activity>
 
@@ -75,14 +75,12 @@
         </activity>
         <activity
             android:name=".SpeechListener"
-            android:label="@string/title_activity_main" >
+            android:label="Speech Listener" >
         </activity>
 
         <receiver android:name=".ServiceReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" />
-
-
             </intent-filter>
         </receiver>
         <receiver
