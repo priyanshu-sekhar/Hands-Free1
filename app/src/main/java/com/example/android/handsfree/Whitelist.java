@@ -145,7 +145,7 @@ public class Whitelist extends ListFragment implements View.OnClickListener {
 
 
     }
-    /*******/
+    /*******//****/
     @Override
     public void onClick(View src) {
         Intent i;
