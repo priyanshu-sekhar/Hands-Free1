@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.AdapterView;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -79,7 +80,11 @@ public class Blacklist extends ListFragment implements View.OnClickListener {
 
         ListAdapter adapter = new SimpleCursorAdapter(
                 getActivity(),
+
                 R.layout.custom_textview,
+
+
+
                 pointer,
                 Contacts = new String[] {DBReader.DBEntry.COLUMN_NAME,
                         DBReader.DBEntry.COLUMN_PHONE
@@ -89,9 +94,20 @@ public class Blacklist extends ListFragment implements View.OnClickListener {
 
         setListAdapter(adapter);
         myListView = getListView();
-        myListView.setItemsCanFocus(false);
+        myListView.setItemsCanFocus(true);
         //myListView.setFastScrollEnabled(true);
         myListView.setChoiceMode(ListView.CHOICE_MODE_MULTIPLE);
+        myListView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+
+            public boolean onItemLongClick(AdapterView<?> arg0, View arg1,
+                                           int pos, long id) {
+                // TODO Auto-generated method stub
+
+                Log.v("long clicked", "pos: " + pos);
+
+                return true;
+            }
+        });
 
     }
 
