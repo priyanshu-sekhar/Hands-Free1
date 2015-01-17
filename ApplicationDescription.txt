@@ -1,0 +1,7 @@
+All Hands Free
+
+This is an Android app for letting you accept or reject calls without using your hands or even looking at the screen.
+It runs quietly in the background and is triggered once the earphones are plugged in. 
+When a call comes in while the earphones are plugged, the app reads you out the name of the person calling. 
+You just have to utter a single word - yes or no, to accept or reject the call.
+The app even provides you the luxury to blacklist the pestering callers.
