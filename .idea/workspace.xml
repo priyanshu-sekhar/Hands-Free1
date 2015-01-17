@@ -18,6 +18,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b68b43cb-11b4-4e9d-9c57-c6c18716fec2" name="Default" comment="">
+      <change type="DELETED" beforePath="D:\AndoidProjects\Android-ViewPagerIndicator-master\Extra\Hands Free\app\src\main\res\drawable-xxhdpi\icon_144.jpg" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="EffectiveNavigation.iws" />
@@ -1679,7 +1680,11 @@
       <created>1421518452193</created>
       <updated>1421518452193</updated>
     </task>
-    <option name="localTasksCounter" value="19" />
+    <task id="LOCAL-00019" summary="Updated for headset listener, textToSpeech settings,BroadcastReceiver,Voice Recognition,Call Accepting/Denying/Blocking options&#10;&#10;Upcoming : Background Services,Interface Redesign">
+      <created>1421518523870</created>
+      <updated>1421518523870</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="ToolWindowManager">
