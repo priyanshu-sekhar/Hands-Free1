@@ -34,7 +34,7 @@
             android:layout_width="320dp"
             android:layout_height="52dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="            Start/Stop Hands Free"
+            android:text="Start/Stop Hands Free"
             android:id="@+id/textView"
             android:layout_gravity="top" />
 

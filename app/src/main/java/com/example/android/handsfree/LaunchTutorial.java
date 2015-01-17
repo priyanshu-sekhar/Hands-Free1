@@ -17,16 +17,23 @@
 
         package com.example.android.handsfree;
 
+        import android.app.Activity;
         import android.content.Context;
         import android.content.Intent;
         import android.content.SharedPreferences;
+        import android.database.Cursor;
+        import android.net.Uri;
         import android.os.Bundle;
         import android.os.Message;
+        import android.provider.ContactsContract;
+        import android.support.annotation.NonNull;
         import android.support.v4.app.Fragment;
         import android.support.v4.app.FragmentActivity;
         import android.support.v4.app.FragmentManager;
         import android.support.v4.app.FragmentPagerAdapter;
         import android.support.v4.view.ViewPager;
+        import android.util.AttributeSet;
+        import android.util.Log;
         import android.view.LayoutInflater;
         import android.view.View;
         import android.view.ViewGroup;
@@ -44,8 +51,8 @@ public class LaunchTutorial extends FragmentActivity{
      */
     private AppSectionsPagerAdapter mAppSectionsPagerAdapter;
     private int INITIAL_HIDE_DELAY=3000;
-
     public static final String MyPrefs = "MyPrefs";
+    private static Context context;
     /**
      * The {@link ViewPager} that will display the three primary sections of the app, one at a
      * time.
@@ -61,62 +68,17 @@ public class LaunchTutorial extends FragmentActivity{
         mDecorView = getWindow().getDecorView();
         hideSystemUI();
 
-        // Create the adapter that will return a fragment for each of the three primary sections
-        // of the app.
         mAppSectionsPagerAdapter = new AppSectionsPagerAdapter(getSupportFragmentManager());
 
-        // Set up the action bar.
-        //final ActionBar actionBar = getActionBar();
-
-        // Specify that the Home/Up button should not be enabled, since there is no hierarchical
-        // parent.
-        //actionBar.setHomeButtonEnabled(false);
-
-        // Specify that we will be displaying tabs in the action bar.
-        //actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
-
-        // Set up the ViewPager, attaching the adapter and setting up a listener for when the
-        // user swipes between sections.
         mViewPager = (ViewPager) findViewById(R.id.pager);
         mViewPager.setAdapter(mAppSectionsPagerAdapter);
 
         //adding circle indicator
-        mIndicator=(CirclePageIndicator)findViewById(R.id.indicator);
+        mIndicator = (CirclePageIndicator) findViewById(R.id.indicator);
         mIndicator.setViewPager(mViewPager);
-//        circlePageIndicator.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener(){
-//            @Override
-//            public void onPageSelected(int position){
-//                circlePageIndicator.setSelected(true);
-//        }
-//        });
-//        mViewPager.setOnPageChangeListener(new ViewPager.SimpleOnPageChangeListener() {
-//            @Override
-//            public void onPageSelected(int position) {
-////                When swiping between different app sections, select the corresponding tab.
-////                We can also use ActionBar.Tab#select() to do this if we have a reference to the
-////                Tab.
-//                circlePageIndicator.setSelected(true);
-//            }
-//        });
-
-//
-
+        context=this;
         startRepeatingTask();
-        // For each of the sections in the app, add a tab to the action bar.
-//        for (int i = 0; i < mAppSectionsPagerAdapter.getCount(); i++) {
-//            // Create a tab with text corresponding to the page title defined by the adapter.
-//            // Also specify this Activity object, which implements the TabListener interface, as the
-//            // listener for when this tab is selected.
-//            actionBar.addTab(
-//                    actionBar.newTab()
-//                            .setText(mAppSectionsPagerAdapter.getPageTitle(i))
-//                            .setTabListener(this));
-//        }
     }
-//    protected void onPostCreate(Bundle savedInstanceState){
-//        super.onPostCreate(savedInstanceState);
-//        delayedHide(INITIAL_HIDE_DELAY);
-//    }
 
     android.os.Handler mHideSystemUiHandler=new android.os.Handler() {
         @Override
@@ -169,19 +131,6 @@ public class LaunchTutorial extends FragmentActivity{
         else
             mHideSystemUiHandler.removeMessages(0);
     }
-//    @Override
-//    public void onTabUnselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-//    }
-//
-//    @Override
-//    public void onTabSelected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-//        // When the given tab is selected, switch to the corresponding page in the ViewPager.
-//        mViewPager.setCurrentItem(tab.getPosition());
-//    }
-//
-//    @Override
-//    public void onTabReselected(ActionBar.Tab tab, FragmentTransaction fragmentTransaction) {
-//    }
 
     /**
      * A {@link FragmentPagerAdapter} that returns a fragment corresponding to one of the primary
@@ -290,6 +239,13 @@ public class LaunchTutorial extends FragmentActivity{
     protected void onPause() {
         super.onPause();
         finish();
+    }
+    private static Context getContext(){
+        return context;
+    }
+    public static void closeActivity(){
+        android.os.Process.killProcess(android.os.Process.myPid());
+
     }
 }
 

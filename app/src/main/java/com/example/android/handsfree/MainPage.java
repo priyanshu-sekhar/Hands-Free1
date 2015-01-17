@@ -3,6 +3,7 @@ package com.example.android.handsfree;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.TimePickerDialog;
+import android.content.ContentUris;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -29,6 +30,8 @@ import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.TimePicker;
 
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import android.support.v4.app.FragmentTransaction;
@@ -230,8 +233,10 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
         ContactName = ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME;
         Log.v("names:", ContactName);
         ContactID = ContactsContract.CommonDataKinds.Phone._ID;
+
         String[] projection;
         projection = new String[]{ContactID,
+                ContactsContract.CommonDataKinds.Phone.PHOTO_ID,
                 ContactName,
                 ContactNumber
         };
@@ -245,7 +250,26 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
         return managedQuery(uri, projection, selection, selectionArgs,
                 sortOrder);
     }
-
+    public InputStream openPhoto(long contactId) {
+        Uri contactUri = ContentUris.withAppendedId(ContactsContract.Contacts.CONTENT_URI, contactId);
+        Uri photoUri = Uri.withAppendedPath(contactUri, ContactsContract.Contacts.Photo.CONTENT_DIRECTORY);
+        Cursor cursor = getContentResolver().query(photoUri,
+                new String[] {ContactsContract.Contacts.Photo.PHOTO}, null, null, null);
+        if (cursor == null) {
+            return null;
+        }
+        try {
+            if (cursor.moveToFirst()) {
+                byte[] data = cursor.getBlob(0);
+                if (data != null) {
+                    return new ByteArrayInputStream(data);
+                }
+            }
+        } finally {
+            cursor.close();
+        }
+        return null;
+    }
 
     public static class PlaceholderFragment extends Fragment {
         /**

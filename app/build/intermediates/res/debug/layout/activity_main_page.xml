@@ -34,7 +34,7 @@
             android:layout_width="320dp"
             android:layout_height="52dp"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="            Start/Stop Hands Free"
+            android:text="Start/Stop Hands Free"
             android:id="@+id/textView"
             android:layout_gravity="top" />
 
@@ -46,4 +46,4 @@
         tools:layout="@layout/fragment_navigation_drawer" />
 <!--</RelativeLayout>-->
 </android.support.v4.widget.DrawerLayout>
-<!-- From: file:/F:/Github/Hands-Free1/app/src/main/res/layout/activity_main_page.xml -->
+<!-- From: file:/D:/AndoidProjects/Android-ViewPagerIndicator-master/Hands%20Free/app/src/main/res/layout/activity_main_page.xml -->

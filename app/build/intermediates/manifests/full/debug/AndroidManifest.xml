@@ -20,13 +20,23 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="14"
+        android:minSdkVersion="15"
         android:targetSdkVersion="21" />
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.ACTION_HEADSET_PLUG" />
+    <!-- Permissions for call block -->
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.PROCESS_OUTGOING_CALLS" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
+    <uses-permission
+        android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="18" />
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -36,12 +46,6 @@
             android:name="com.example.android.handsfree.LaunchTutorial"
             android:label="Hands Free"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
-        </activity>
-        <activity
-            android:name="com.example.android.handsfree.Splash"
-            android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="Hands Free"
-            android:theme="@style/FullscreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -49,7 +53,34 @@
             </intent-filter>
         </activity>
         <activity
+            android:name="com.example.android.handsfree.Splash"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/app_name"
+            android:theme="@style/FullscreenTheme" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- <receiver android:name=".MusicIntentReceiver" > -->
+        <!-- <intent-filter> -->
+        <!-- <action android:name="android.intent.action.HEADSET_PLUG" /> -->
+
+
+        <!-- </intent-filter> -->
+        <!-- </receiver> -->
+        <service
+            android:name="com.example.android.handsfree.BackgroundService"
+            android:exported="false" />
+
+        <activity
             android:name="com.example.android.handsfree.MainPage"
+            android:label="@string/title_activity_main" >
+        </activity>
+        <activity
+            android:name="com.example.android.handsfree.SpeechListener"
             android:label="@string/title_activity_main" >
         </activity>
 
@@ -58,6 +89,21 @@
                 <action android:name="android.intent.action.PHONE_STATE" />
             </intent-filter>
         </receiver>
+        <receiver
+            android:name="com.example.android.handsfree.HeadphoneListener"
+            android:enabled="true"
+            android:exported="true" >
+            <uses-permission android:name="android.permission.ACTION_HEADSET_PLUG" />
+
+            <intent-filter>
+                <action android:name="android.intent.action.HEADSET_PLUG" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name="com.example.android.handsfree.CallActionListener"
+            android:label="@string/title_call_action" >
+        </activity>
     </application>
 
 </manifest>

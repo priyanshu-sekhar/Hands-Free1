@@ -19,7 +19,7 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-sdk android:minSdkVersion="14" />
+    <uses-sdk android:minSdkVersion="15" />
 
     <uses-permission android:name="android.permission.READ_CONTACTS" />
     <uses-permission android:name="android.permission.WRITE_CONTACTS" />
@@ -60,12 +60,15 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".MusicIntentReceiver" >
-            <intent-filter>
-                <action android:name="android.intent.action.HEADSET_PLUG" />
-            </intent-filter>
-        </receiver>
+        <!--<receiver android:name=".MusicIntentReceiver" >-->
+            <!--<intent-filter>-->
+                <!--<action android:name="android.intent.action.HEADSET_PLUG" />-->
 
+            <!--</intent-filter>-->
+        <!--</receiver>-->
+        <service
+            android:name=".BackgroundService"
+            android:exported="false"/>
         <activity
             android:name=".MainPage"
             android:label="@string/title_activity_main">
@@ -78,13 +81,26 @@
         <receiver android:name=".ServiceReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.PHONE_STATE" />
+
+
             </intent-filter>
         </receiver>
-
+        <receiver
+            android:name=".HeadphoneListener"
+            android:exported="true"
+            android:enabled="true">
+            <uses-permission android:name="android.permission.ACTION_HEADSET_PLUG" />
+            <intent-filter>
+               <action android:name="android.intent.action.HEADSET_PLUG" />
+            </intent-filter>
+        </receiver>
         <activity
             android:name=".CallActionListener"
             android:label="@string/title_call_action" >
         </activity>
+
+
+
     </application>
 
 </manifest>
