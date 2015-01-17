@@ -16,7 +16,7 @@ import android.util.SparseBooleanArray;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.RadioButton;
@@ -37,7 +37,8 @@ public class Blacklist extends ListFragment implements View.OnClickListener {
     public int[] to = {};
 
 
-    Button save_button,cancel_button;
+
+    private ImageButton save, cancel;
     private TextView phone;
     private String phoneNumber;
     private Cursor cursor;
@@ -68,15 +69,17 @@ public class Blacklist extends ListFragment implements View.OnClickListener {
         pointer=mHandler.getTablePointer(DBReader.DBEntry.TABLE_NAME);
         pointer.moveToFirst();
 
-        save_button = (Button) getView().findViewById(R.id.save);
-        cancel_button=(Button) getView().findViewById(R.id.cancel);
+        // set references to views
+        save = (ImageButton) getView().findViewById(R.id.save);
+        cancel = (ImageButton) getView().findViewById(R.id.cancel);
+
         // Defines listeners for the buttons
-        save_button.setOnClickListener(this);
-        cancel_button.setOnClickListener(this);
+        save.setOnClickListener(this);
+        cancel.setOnClickListener(this);
 
         ListAdapter adapter = new SimpleCursorAdapter(
                 getActivity(),
-                android.R.layout.simple_list_item_multiple_choice,
+                R.layout.custom_textview,
                 pointer,
                 Contacts = new String[] {DBReader.DBEntry.COLUMN_NAME,
                         DBReader.DBEntry.COLUMN_PHONE
@@ -153,8 +156,6 @@ public class Blacklist extends ListFragment implements View.OnClickListener {
                     }
 
                 }
-
-
 
                 getActivity().getSupportFragmentManager().popBackStackImmediate();
                 break;

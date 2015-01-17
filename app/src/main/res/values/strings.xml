@@ -16,10 +16,10 @@
 -->
 <resources>
 
-    <string name="app_name">Effective Navigation</string>
+    <string name="app_name">Hands Free</string>
     <string name="dummy_section_text">Section %1d is just a dummy section.</string>
     <string name="demo_external_activity">Demo External Activity</string>
-    <string name="getting_started">Get Hands Free</string>
+    <string name="getting_started">Go Hands Free</string>
     <string name="title_activity_main">Hands Free</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -31,7 +31,6 @@
     <string name="action_sync">Sync</string>
     <string name="action_blacklist">Clear BlackList</string>
     <string name="action_synceddata">Delete Contacts</string>
-    <string name="nothing"></string>
     <string name="contactsList">Contacts</string>
     <string name="title_call_action">Call Action</string>
     <string name="hello_world">Hello world!</string>
