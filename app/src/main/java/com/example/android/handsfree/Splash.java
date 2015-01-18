@@ -12,31 +12,24 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-
-import java.util.Locale;
-
-import static java.lang.Thread.sleep;
-//import android.os.SystemProperties;
 
 
 public class Splash extends Activity {   /*Changes for Headset-Plugin listener*/
     private static final String LOG_TAG = Splash.class.getSimpleName();
     private View mDecorView;
-    public static final String MyPrefs = "MyPrefs";
-    private static Splash instance;
-    HeadphoneListener receiver;
+    public static final String MyPrefs = "MyPrefs"; // for saving preferences that can be remembered the next time the app is fired up
+    private HeadphoneListener receiver;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_splash); // inflates the layout for this activity
 
         mDecorView = getWindow().getDecorView();
         hideSystemUI();
+
         // Runs for 2 secs then goes to next activity
         Thread timer = new Thread() {
             public void run() {
@@ -46,6 +39,11 @@ public class Splash extends Activity {   /*Changes for Headset-Plugin listener*/
                     e.printStackTrace();
                 } finally {
 
+                    /**
+                     * For the first time the app is installed
+                     * Launch Tutorial will be called from this activity
+                     * Rest of the times, Main Page will be called
+                     */
                     SharedPreferences sp = getSharedPreferences(MyPrefs, Context.MODE_PRIVATE);
                     if (!sp.getBoolean("First", false)) {
                         SharedPreferences.Editor editor = sp.edit();
@@ -56,12 +54,8 @@ public class Splash extends Activity {   /*Changes for Headset-Plugin listener*/
                         addContacts();
                     } else {
                         Intent intent = new Intent(Splash.this, MainPage.class);
-//                        SharedPreferences.Editor editor = sp.edit();
-//                        editor.putBoolean("First", false);
                         startActivity(intent);
                     }
-
-
                 }
             }
         };
