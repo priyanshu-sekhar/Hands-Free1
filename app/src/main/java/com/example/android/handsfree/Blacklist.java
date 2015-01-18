@@ -36,18 +36,8 @@ public class Blacklist extends ListFragment implements View.OnClickListener {
     // List variables
 
     public int[] to = {};
-
-
-
     private ImageButton save, cancel;
-    private TextView phone;
-    private String phoneNumber;
-    private Cursor cursor;
-    ContentValues values;
-    String ContactNumber,ContactName,ContactID;
     DBHandler mHandler;
-    Cursor mCursor;
-    SQLiteDatabase db;
     public ListView myListView;
     Cursor pointer;
     public String[] Contacts = {};
@@ -121,14 +111,10 @@ public class Blacklist extends ListFragment implements View.OnClickListener {
 
         String[] projection={
                 DBReader.DBEntry._ID,
-                //DBReader.DBEntry.KEY_ID,
                 DBReader.DBEntry.COLUMN_NAME,
                 DBReader.DBEntry.COLUMN_PHONE,
-                //DBReader.DBEntry.COLUMN_BLACKLIST,
-                //DBReader.DBEntry.COLUMN_WHITELIST
         };
-        String selection =null;// ContactsContract.CommonDataKinds.Phone.HAS_PHONE_NUMBER + " = '1'";
-//        String[] condition = {DBReader.DBEntry._ID+"="+position};
+        String selection =null;
         String[] selectionArgs = null;
         String sortOrder = DBReader.DBEntry.COLUMN_NAME;
 

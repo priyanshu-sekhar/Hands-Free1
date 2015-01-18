@@ -48,6 +48,7 @@
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
         </activity>
 
+        <!-- Launcher Activity -->
         <activity
             android:name=".Splash"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -55,7 +56,6 @@
             android:theme="@style/FullscreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
