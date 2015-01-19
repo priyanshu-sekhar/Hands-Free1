@@ -17,27 +17,19 @@
 
         package com.example.android.handsfree;
 
-        import android.app.Activity;
-        import android.content.Context;
-        import android.content.Intent;
-        import android.content.SharedPreferences;
-        import android.database.Cursor;
-        import android.net.Uri;
-        import android.os.Bundle;
-        import android.os.Message;
-        import android.provider.ContactsContract;
-        import android.support.annotation.NonNull;
-        import android.support.v4.app.Fragment;
-        import android.support.v4.app.FragmentActivity;
-        import android.support.v4.app.FragmentManager;
-        import android.support.v4.app.FragmentPagerAdapter;
-        import android.support.v4.view.ViewPager;
-        import android.util.AttributeSet;
-        import android.util.Log;
-        import android.view.LayoutInflater;
-        import android.view.View;
-        import android.view.ViewGroup;
-        import android.widget.TextView;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Message;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 
@@ -51,7 +43,6 @@ public class LaunchTutorial extends FragmentActivity{
      */
     private AppSectionsPagerAdapter mAppSectionsPagerAdapter;
     private int INITIAL_HIDE_DELAY=3000;
-    public static final String MyPrefs = "MyPrefs";
     private static Context context;
     /**
      * The {@link ViewPager} that will display the three primary sections of the app, one at a
