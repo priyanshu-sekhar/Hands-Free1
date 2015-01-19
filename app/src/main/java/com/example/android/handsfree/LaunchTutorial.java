@@ -155,14 +155,6 @@ public class LaunchTutorial extends FragmentActivity{
 
                 default:
                     return new SectionFragment2();
-
-//                default:
-//                    // The other sections of the app are dummy placeholders.
-//                    Fragment fragment = new DummySectionFragment();
-//                    Bundle args = new Bundle();
-//                    args.putInt(DummySectionFragment.ARG_SECTION_NUMBER, i + 1);
-//                    fragment.setArguments(args);
-//                    return fragment;
             }
         }
 
@@ -195,25 +187,16 @@ public class LaunchTutorial extends FragmentActivity{
      * A dummy fragment representing a section of the app, but that simply displays dummy text.
      */
     public static class SectionFragment1 extends Fragment {
-
-        public static final String ARG_SECTION_NUMBER = "section_number";
-
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
             View rootView = inflater.inflate(R.layout.fragment_section_2, container, false);
             ((TextView)rootView.findViewById(android.R.id.text1)).setText("Page 2");
-//            Bundle args = getArguments();
-//            ((TextView) rootView.findViewById(android.R.id.text1)).setText(
-//                    getString(R.string.dummy_section_text, args.getInt(ARG_SECTION_NUMBER)));
             return rootView;
         }
     }
 
     public static class SectionFragment2 extends Fragment{
-
-        public static final String ARG_SECTION_NUMBER="section_number";
-
         @Override
         public View onCreateView(LayoutInflater inflater,ViewGroup container,
                                  Bundle savedInstanceState){
