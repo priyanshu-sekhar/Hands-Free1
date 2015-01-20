@@ -126,7 +126,8 @@ public class CallActionListener extends ActionBarActivity {
     }
 
     public void speakOut(String text) {
-        text+="is Calling you. Say YES to receive or NO to reject";
+        text+="is Calling you.";
+        text+=getResources().getString(R.string.speech_message);
         Log.i("tts", tts.toString());
         HashMap<String, String> map = new HashMap<String, String>();
         map.put(TextToSpeech.Engine.KEY_PARAM_UTTERANCE_ID, "UniqueID");

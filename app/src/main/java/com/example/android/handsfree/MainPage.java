@@ -2,9 +2,7 @@ package com.example.android.handsfree;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.TimePickerDialog;
 import android.content.ContentUris;
-import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -13,9 +11,9 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.speech.RecognizerIntent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -27,22 +25,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.RadioButton;
-import android.widget.TimePicker;
-
+import android.widget.Toast;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.Calendar;
-import android.support.v4.app.FragmentTransaction;
-import android.widget.Toast;
-
-import java.lang.Object.*;
-//import com.google.android.gcm.server.Constants;
-public class MainPage extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks, View.OnClickListener {
-
-    private static Button bUnplug;
-    private static final int VOICE_RECOGNITION_REQUEST_CODE = 1234;
+public class MainPage extends ActionBarActivity implements NavigationDrawerFragment.NavigationDrawerCallbacks {
 
     private NavigationDrawerFragment mNavigationDrawerFragment;
     private CharSequence mTitle;
@@ -55,12 +41,7 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
         setContentView(R.layout.activity_main_page);
 
 
-        /** Capture View elements */
-        bUnplug = (Button) findViewById(R.id.button1);
 
-        /** Listener for click event of the button */
-
-        bUnplug.setOnClickListener(this);
 
         /** Get the current time of system */
         mNavigationDrawerFragment = (NavigationDrawerFragment)
@@ -74,39 +55,6 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
         //mDrawerList = (ListView) findViewById(R.id.list_slidermenu);
 
     }
-
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        // Inflate the menu; this adds items to the action bar if it is present.
-//        getMenuInflater().inflate(R.menu.main, menu);
-//        return true;
-//    }
-
-    /**
-     * To do when button is clicked
-     */
-    @Override
-    public void onClick(View v) {
-        // TODO Auto-generated method stub
-        //showDialog(TIME_DIALOG_ID);
-        //com.example.android.effectivenavigation.datetimepicker.time.TimePickerDialog dialog = newInstance((OnTimeSetListener) mTimeSetListener, getHour, getMinute, true);
-    }
-
-    /**
-     * Create a new dialog for time picker
-     */
-//	@Override
-//	@Deprecated
-//	protected Dialog onCreateDialog(int id)
-//	{
-//		// TODO Auto-generated method stub
-//		switch(id)
-//		{
-//		case TIME_DIALOG_ID:
-//			return new TimePickerDialog(this, mTimeSetListener, getHour, getMinute, true);
-//		}
-//		return null;
-//	}
     @Override
     public void onNavigationDrawerItemSelected(int position) {
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -179,19 +127,26 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
         actionBar.setBackgroundDrawable(new ColorDrawable(Color.parseColor("#848482")));
     }
 
+    /**
+     * Options menu implementation
+     * @param item
+     * @return
+     */
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+
         DBHandler mHandler = new DBHandler(getApplicationContext());
         SQLiteDatabase db = mHandler.getWritableDatabase();
-        //noinspection SimplifiableIfStatement
+
         switch (item.getItemId()) {
-            case R.id.action_settings:
-                Log.i("settings", new String("settngs"));
-                Toast.makeText(getApplicationContext(), "run", Toast.LENGTH_LONG).show();
+            case R.id.action_settings: // the Settings option
+                Intent intent = new Intent(MainPage.this, Settings.class);
+                startActivity(intent);
+
 
                 break;
 
@@ -213,12 +168,6 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 FragmentTransaction ft = fragmentManager.beginTransaction();
                 ft.replace(R.id.container, new Blacklist_main()).addToBackStack(null).commit();
-                break;
-            case R.id.action_synceddata:
-                mHandler.deleteAll(DBReader.DBEntry.TABLE_NAME);
-                FragmentManager fragmentManager1 = getSupportFragmentManager();
-                FragmentTransaction ft1 = fragmentManager1.beginTransaction();
-                ft1.replace(R.id.container, new Blacklist_main()).addToBackStack(null).commit();
                 break;
         }
         db.close();
