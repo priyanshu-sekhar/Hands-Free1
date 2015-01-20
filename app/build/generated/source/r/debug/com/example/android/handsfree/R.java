@@ -1636,12 +1636,15 @@ containing a value of this type.
         public static final int abc_textfield_search_material=0x7f020032;
         public static final int drawer_shadow=0x7f020033;
         public static final int ic_action_add_group=0x7f020034;
-        public static final int ic_action_cancel=0x7f020035;
-        public static final int ic_action_discard=0x7f020036;
-        public static final int ic_action_save=0x7f020037;
-        public static final int ic_drawer=0x7f020038;
-        public static final int icon_144=0x7f020039;
-        public static final int splash=0x7f02003a;
+        public static final int ic_action_call=0x7f020035;
+        public static final int ic_action_cancel=0x7f020036;
+        public static final int ic_action_discard=0x7f020037;
+        public static final int ic_action_edit=0x7f020038;
+        public static final int ic_action_headphones=0x7f020039;
+        public static final int ic_action_save=0x7f02003a;
+        public static final int ic_drawer=0x7f02003b;
+        public static final int icon_144=0x7f02003c;
+        public static final int splash=0x7f02003d;
     }
     public static final class id {
         public static final int action_bar=0x7f090036;
