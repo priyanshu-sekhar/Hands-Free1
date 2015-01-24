@@ -40,7 +40,8 @@
     <application
         android:icon="@drawable/icon_144"
         android:label="Hands Free"
-        android:theme="@style/Theme.AppCompat" >
+        android:theme="@style/Theme.AppCompat.Light">
+
 
         <activity
             android:name=".LaunchTutorial"
@@ -51,7 +52,6 @@
         <activity
             android:name=".Splash"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="Hands Free"
             android:theme="@style/FullscreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -71,7 +71,8 @@
             android:exported="false"/>
         <activity
             android:name=".MainPage"
-            android:label="@string/title_activity_main">
+            android:label=""
+            android:theme="@style/Theme.AnApp.Logo">
         </activity>
         <activity
             android:name=".SpeechListener"

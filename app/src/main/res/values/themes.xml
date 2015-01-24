@@ -23,7 +23,14 @@
     <style name="MaterialNavigationDrawerTheme.TranslucentKitKatStatusBar" parent="MaterialNavigationDrawerTheme" />
 
     <style name="MaterialNavigationDrawerTheme.Light.DarkActionBar.TranslucentKitKatStatusBar" parent="MaterialNavigationDrawerTheme.Light.DarkActionBar" />
+    <style name="Theme.AnApp" parent="Theme.AppCompat">
+        <item name="android:actionBarStyle">@style/Widget.ActionBar</item>
+        <!-- ... -->
+    </style>
+    <style name="Theme.AnApp.Logo" parent="Theme.AppCompat">
+        <item name="android:actionBarStyle">@style/Widget.ActionBar.ActionBarLogo</item>
+        <!-- ... -->
+    </style>
 
-/style>
 
 </resources>

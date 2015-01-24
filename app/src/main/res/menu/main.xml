@@ -6,18 +6,31 @@
         <!--android:orderInCategory="100"-->
         <!--app:showAsAction="never"-->
         <!--android:title="Settings"/>-->
-    <item android:id="@+id/action_example" android:title="@string/action_example"
-        app:showAsAction="withText|ifRoom" />
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+
+    <!--<ToggleButton-->
+        <!--android:id="@+id/togglebutton"-->
+        <!--app:showAsAction="always"-->
+        <!--android:textOn="On"-->
+        <!--android:textOff="Off"-->
+        <!--android:onClick=""/>-->
+
+
+    <item android:id="@+id/action_settings"
+        android:title="@string/action_settings"
+        app:showAsAction="never"
+        android:actionLayout="@layout/actionbar_switch"/>
     <item android:id="@+id/action_sync" android:title="@string/action_sync"
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_blacklist" android:title="@string/action_blacklist"
         android:orderInCategory="100" app:showAsAction="never" />
     <item android:id="@+id/action_synceddata" android:title="@string/action_synceddata"
         android:orderInCategory="100" app:showAsAction="never" />
-    <item android:id="@+id/action_switch" android:title="@string/action_switch"
-        android:orderInCategory="100" app:showAsAction="always"
-        android:actionLayout="@layout/actionbar_switch"/>
+    <item
+        android:id="@+id/Switch"
+        android:title=""
+        app:showAsAction="always"
+        android:actionLayout="@layout/actionbar_switch"
+        />
+
 
 </menu>

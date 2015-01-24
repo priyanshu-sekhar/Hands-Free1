@@ -30,6 +30,20 @@
         <dex dex="D:\AndoidProjects\Android-ViewPagerIndicator-master\Extra\Hands Free\app\build\intermediates\pre-dexed\debug\classes-fd600870c17df61eba00af33d316d415c61844a0.jar" />
     </item>
     <item
+        jar="D:\AndoidProjects\Android-ViewPagerIndicator-master\Extra\Hands Free\library\ibmdata.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="19338a12045d395e61655e5690784665773b18ca">
+        <dex dex="D:\AndoidProjects\Android-ViewPagerIndicator-master\Extra\Hands Free\app\build\intermediates\pre-dexed\debug\ibmdata-1d4c958ff995e1f97c8e439dfdd5c9e2e837f79e.jar" />
+    </item>
+    <item
+        jar="D:\AndoidProjects\Android-ViewPagerIndicator-master\Extra\Hands Free\library\ibmcloudcode.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="e5914b778e94fcfbfb51a6eb31cc35b943517be7">
+        <dex dex="D:\AndoidProjects\Android-ViewPagerIndicator-master\Extra\Hands Free\app\build\intermediates\pre-dexed\debug\ibmcloudcode-cd7b46493286b3de47712a3efa66f98439d762cb.jar" />
+    </item>
+    <item
         jar="D:\AndoidProjects\Android-ViewPagerIndicator-master\Hands Free\app\build\intermediates\exploded-aar\com.android.support\support-v4\21.0.3\libs\internal_impl-21.0.3.jar"
         jumboMode="false"
         revision="21.1.2"
@@ -49,6 +63,20 @@
         revision="21.1.2"
         sha1="81d42bf983a8741f4888a6e333e454e4a5e0eeb7">
         <dex dex="D:\AndoidProjects\Android-ViewPagerIndicator-master\Extra\Hands Free\app\build\intermediates\pre-dexed\debug\classes-5a0fee4c3a324e3f3fd82062c943660ba561dbf5.jar" />
+    </item>
+    <item
+        jar="D:\AndoidProjects\Android-ViewPagerIndicator-master\Extra\Hands Free\library\ibmbluemix.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="a160354300dbbef378c909d87e3f687083b53b7f">
+        <dex dex="D:\AndoidProjects\Android-ViewPagerIndicator-master\Extra\Hands Free\app\build\intermediates\pre-dexed\debug\ibmbluemix-1707594f0876b61723d40463662f739442482888.jar" />
+    </item>
+    <item
+        jar="D:\AndoidProjects\Android-ViewPagerIndicator-master\Extra\Hands Free\library\ibmfilesync.jar"
+        jumboMode="false"
+        revision="21.1.2"
+        sha1="32f74160a2f771eb8aa6e3f3d447ffe9bca6826b">
+        <dex dex="D:\AndoidProjects\Android-ViewPagerIndicator-master\Extra\Hands Free\app\build\intermediates\pre-dexed\debug\ibmfilesync-5ef9cf5220097a0c3708a2e6ed1516e032208ff8.jar" />
     </item>
 
 </items>

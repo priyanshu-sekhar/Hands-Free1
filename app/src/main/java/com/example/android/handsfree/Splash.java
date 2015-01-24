@@ -8,16 +8,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import android.speech.tts.TextToSpeech;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-
-import java.util.Locale;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.util.Properties;
 
 import static java.lang.Thread.sleep;
 //import android.os.SystemProperties;
@@ -29,6 +29,10 @@ public class Splash extends Activity {   /*Changes for Headset-Plugin listener*/
     public static final String MyPrefs = "MyPrefs";
     private static Splash instance;
     HeadphoneListener receiver;
+    private static final String APP_ID = "applicationID";
+    private static final String APP_SECRET = "applicationSecret";
+    private static final String APP_ROUTE = "applicationRoute";
+    private static final String PROPS_FILE = "bluelist.properties";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,6 +78,9 @@ public class Splash extends Activity {   /*Changes for Headset-Plugin listener*/
         receiver = new HeadphoneListener();
         registerReceiver( receiver, receiverFilter );
         /******************************/
+
+
+
     }
 
     public void addContacts() {

@@ -28,6 +28,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.RadioButton;
+import android.widget.Switch;
 import android.widget.TimePicker;
 
 import java.io.ByteArrayInputStream;
@@ -36,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import android.support.v4.app.FragmentTransaction;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import java.lang.Object.*;
 //import com.google.android.gcm.server.Constants;
@@ -152,21 +154,38 @@ public class MainPage extends ActionBarActivity implements NavigationDrawerFragm
             case 2:
                 mTitle = getString(R.string.title_section2);
                 break;
-//            case 3:
-//                mTitle = getString(R.string.title_section3);
-//                break;
+
         }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+
         if (!mNavigationDrawerFragment.isDrawerOpen()) {
             // Only show items in the action bar relevant to this screen
             // if the drawer is not showing. Otherwise, let the drawer
             // decide what to show in the action bar.
             getMenuInflater().inflate(R.menu.main, menu);
-            restoreActionBar();
-            return true;
+            MenuItem actionSwitch=menu.findItem(R.id.Switch);
+            actionSwitch.setActionView(R.layout.actionbar_switch);
+
+
+//            MenuItem actionToggle=menu.findItem(R.id.togglebutton);
+//
+//            ToggleButton actionView=(ToggleButton)actionToggle.getActionView();
+////            final MenuItem actionSwitch=menu.findItem(R.id.action_switch);
+////            final Switch actionView=(Switch)actionSwitch.getActionView();
+//            actionView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//
+//                }
+//            });
+            //restoreActionBar();
+//            getSupportActionBar().setLogo(R.drawable.ic_launcher1);
+//            getSupportActionBar().setDisplayUseLogoEnabled(true);
+//            getSupportActionBar().setDisplayShowTitleEnabled(false);
+            return super.onCreateOptionsMenu(menu);
         }
         return super.onCreateOptionsMenu(menu);
     }
