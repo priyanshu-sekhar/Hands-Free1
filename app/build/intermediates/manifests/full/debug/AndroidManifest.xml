@@ -39,23 +39,17 @@
         android:maxSdkVersion="18" />
 
     <application
-        android:icon="@drawable/ic_launcher"
+        android:icon="@drawable/icon_144"
         android:label="Hands Free"
-        android:theme="@style/Theme.AppCompat" >
+        android:theme="@style/Theme.AppCompat.Light" >
         <activity
             android:name="com.example.android.handsfree.LaunchTutorial"
-            android:label="Hands Free"
+            android:label="Launch Tutorial"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar.Fullscreen" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.example.android.handsfree.Splash"
             android:configChanges="orientation|keyboardHidden|screenSize"
-            android:label="@string/app_name"
             android:theme="@style/FullscreenTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -77,11 +71,12 @@
 
         <activity
             android:name="com.example.android.handsfree.MainPage"
-            android:label="@string/title_activity_main" >
+            android:label=""
+            android:theme="@style/Theme.AnApp.Logo" >
         </activity>
         <activity
             android:name="com.example.android.handsfree.SpeechListener"
-            android:label="@string/title_activity_main" >
+            android:label="Speech Listener" >
         </activity>
 
         <receiver android:name="com.example.android.handsfree.ServiceReceiver" >

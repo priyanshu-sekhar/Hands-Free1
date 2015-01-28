@@ -1630,23 +1630,18 @@ containing a value of this type.
         public static final int abc_textfield_search_activated_mtrl_alpha=0x7f020030;
         public static final int abc_textfield_search_default_mtrl_alpha=0x7f020031;
         public static final int abc_textfield_search_material=0x7f020032;
-        public static final int bamboo=0x7f020033;
-        public static final int drawer_shadow=0x7f020034;
-        public static final int ic_action_add_group=0x7f020035;
-        public static final int ic_action_cancel=0x7f020036;
-        public static final int ic_action_discard=0x7f020037;
-        public static final int ic_action_save=0x7f020038;
-        public static final int ic_drawer=0x7f020039;
-        public static final int ic_launcher1=0x7f02003a;
-        public static final int icon_144=0x7f02003b;
-        public static final int mat2=0x7f02003c;
-        public static final int mat3=0x7f02003d;
-        public static final int photo=0x7f02003e;
-        public static final int photo2=0x7f02003f;
-        public static final int splash=0x7f020040;
+        public static final int drawer_shadow=0x7f020033;
+        public static final int ic_action_add_group=0x7f020034;
+        public static final int ic_action_cancel=0x7f020035;
+        public static final int ic_action_discard=0x7f020036;
+        public static final int ic_action_save=0x7f020037;
+        public static final int ic_drawer=0x7f020038;
+        public static final int ic_launcher1=0x7f020039;
+        public static final int icon_144=0x7f02003a;
+        public static final int splash=0x7f02003b;
     }
     public static final class id {
-        public static final int Switch=0x7f08006c;
+        public static final int Switch=0x7f08006a;
         public static final int action_bar=0x7f080036;
         public static final int action_bar_activity_content=0x7f080000;
         public static final int action_bar_container=0x7f080035;
@@ -1654,16 +1649,16 @@ containing a value of this type.
         public static final int action_bar_spinner=0x7f080001;
         public static final int action_bar_subtitle=0x7f080024;
         public static final int action_bar_title=0x7f080023;
-        public static final int action_blacklist=0x7f08006a;
+        public static final int action_blacklist=0x7f080068;
         public static final int action_context_bar=0x7f080037;
         public static final int action_menu_divider=0x7f080002;
         public static final int action_menu_presenter=0x7f080003;
         public static final int action_mode_bar=0x7f080033;
         public static final int action_mode_bar_stub=0x7f080032;
         public static final int action_mode_close_button=0x7f080025;
-        public static final int action_settings=0x7f080068;
-        public static final int action_sync=0x7f080069;
-        public static final int action_synceddata=0x7f08006b;
+        public static final int action_settings=0x7f080066;
+        public static final int action_sync=0x7f080067;
+        public static final int action_synceddata=0x7f080069;
         public static final int activity_chooser_view_content=0x7f080026;
         public static final int add=0x7f080064;
         public static final int always=0x7f080017;
@@ -1695,8 +1690,6 @@ containing a value of this type.
         public static final int icon=0x7f08002b;
         public static final int ifRoom=0x7f080019;
         public static final int image=0x7f080028;
-        public static final int imageButton=0x7f080066;
-        public static final int imageView=0x7f080067;
         public static final int indicator=0x7f080048;
         public static final int listMode=0x7f08000a;
         public static final int listView=0x7f08004e;
@@ -1817,8 +1810,7 @@ containing a value of this type.
         public static final int navigation_whitelist=0x7f03002a;
         public static final int simple_circles=0x7f03002b;
         public static final int support_simple_spinner_dropdown_item=0x7f03002c;
-        public static final int test=0x7f03002d;
-        public static final int themed_circles=0x7f03002e;
+        public static final int themed_circles=0x7f03002d;
     }
     public static final class menu {
         public static final int global=0x7f0c0000;
